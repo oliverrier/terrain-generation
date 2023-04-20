@@ -9,10 +9,7 @@ if(MSVC)
 endif()
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
-include(CPM)
 include(build_configuration)
-
-CPMAddPackage("gh:SFML/SFML#2.6.x")
 
 add_library(project_options INTERFACE)
 target_compile_features(project_options INTERFACE cxx_std_20)
