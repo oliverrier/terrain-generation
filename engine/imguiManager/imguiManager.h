@@ -7,6 +7,20 @@
 #include <string>
 
 
+struct modalWindow
+{
+    std::string name;
+    std::string text;
+    bool isOpen;
+
+    modalWindow(std::string name, std::string text, bool isOpen)
+    {
+        this->name = name;
+        this->text = text;
+        this->isOpen = isOpen;
+    }
+};
+
 // with singleton pattern
 class ImGuiManager
 {

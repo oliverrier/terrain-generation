@@ -32,6 +32,9 @@ int main() {
         ImGui::Begin("Hello, world!");
         ImGui::Button("Look at this pretty button");
         ImGui::End();
+        ImGui::Begin("Hello, world! 2");
+        ImGui::Button("Look at this pretty button");
+        ImGui::End();
 
         window.clear();
         window.draw(shape);
