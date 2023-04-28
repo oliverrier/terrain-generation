@@ -6,19 +6,70 @@
 
 #include <string>
 
+using Callback = std::function<void()>;
 
-struct modalWindow
+class ImGuiWidget
 {
-    std::string name;
-    std::string text;
-    bool isOpen;
-
-    modalWindow(std::string name, std::string text, bool isOpen)
+public:
+    ImGuiWidget(std::string name, std::string text)
     {
         this->name = name;
         this->text = text;
-        this->isOpen = isOpen;
     }
+
+    virtual void render() = 0;
+    std::string name;
+    std::string text;
+    Callback callback;
+
+};
+
+class ImGuiButton : public ImGuiWidget
+{
+public:
+    ImGuiButton(std::string name, std::string text, Callback callback) : ImGuiWidget(name, text)
+    {
+        this->callback = callback;
+    }
+
+    void render() override
+    {
+        if (ImGui::Button(text.c_str()))
+        {
+            callback();
+        }
+    }
+
+};
+
+class ImGuiWindow
+{
+public:
+    ImGuiWindow(std::string name)
+    {
+        this->name = name;
+    }
+
+    void render()
+    {
+        ImGui::Begin(name.c_str());
+
+        for (auto& widget : widgets)
+        {
+            widget->render();
+        }
+
+        ImGui::End();
+    }
+
+    void addWidget(ImGuiWidget* widget)
+    {
+        widgets.push_back(widget);
+    }
+
+    std::string name;
+    std::vector<ImGuiWidget*> widgets;
+
 };
 
 // with singleton pattern
@@ -46,8 +97,7 @@ private:
     ImGuiManager() = default;
     ~ImGuiManager() = default;
 
-    std::vector<std::pair<std::string, const char*>> textList;
-
+    std::vector<ImGuiWindow*> windows;
 
 
 };
@@ -59,16 +109,20 @@ void ImGuiManager::init(sf::RenderWindow& window)
 
 void ImGuiManager::update()
 {
-    ImGui::SFML::Update();
+
 }
 
 void ImGuiManager::render()
 {
-    ImGui::SFML::Render();
+    for (auto& window : windows)
+    {
+        window->render();
+    }
 }
 
-void ImGuiManager::addText(const char* text)
-{
-    ImGui::Text(text);
-}
+// void ImGuiManager::addText(const char* text)
+// {
+//     ImGui::Text(text);
+// }
 
+// TODO : Not tested
