@@ -13,24 +13,33 @@ Vous devez aussi avoir configuré les variables d'environnement suivantes:
 
 ### Windows
 
+Mettre à jour les submodules:
 `git submodule update --init --recursive`
 
+Générer les binaries de Vcpkg:
 `.\vcpkg\bootstrap-vcpkg.bat`
 
+Installer les packages nécessaires:
 `.\vcpkg\vcpkg.exe install --triplet x64-windows`
 
 ### Linux
 
+Mettre à jour les submodules:
 `git submodule update --init --recursive`
 
+Générer les binaries de Vcpkg:
 `./vcpkg/bootstrap-vcpkg.sh`
 
+Installer les packages nécessaires:
 `./vcpkg/vcpkg install --triplet x64-linux`
 
 ### Mac
 
+Mettre à jour les submodules:
 `git submodule update --init --recursive`
 
+Générer les binaries de Vcpkg:
 `./vcpkg/bootstrap-vcpkg.sh`
 
+Installer les packages nécessaires:
 `./vcpkg/vcpkg install --triplet x64-osx`
