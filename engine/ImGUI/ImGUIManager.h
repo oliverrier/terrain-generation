@@ -17,18 +17,15 @@ namespace MyImGUI
     using Setter = std::function<void(T)>;
 
 
-    template<typename T>
     class IImGUIInput
     {
     public:
         virtual ~IImGUIInput() = default;
         virtual void update() = 0;
         virtual void render() = 0;
-        virtual T getValue() const = 0;
-        virtual void setValue(const T& value) = 0;
     };
 
-    class ImguiButton : public IImGUIInput<bool>
+    class ImguiButton : public IImGUIInput
     {
     public:
         ImguiButton(std::string& text, Callback& callback)
@@ -37,24 +34,14 @@ namespace MyImGUI
         {}
         void update() override
         {
-            if (ImGui::Button(m_text.c_str()))
+            if (ImGui::Button(m_text.c_str())) {
                 m_callback();
+            }
         }
 
         void render() override
         {
             update();
-        }
-
-        bool getValue() const override
-        {
-            assert(false);
-            return false;
-        }
-
-        void setValue(const bool& value) override
-        {
-            assert(false);
         }
 
     protected:
@@ -62,46 +49,36 @@ namespace MyImGUI
         Callback m_callback;
     };
 
-    class ImguiButtonOnOff : public IImGUIInput<bool>
+
+    class ImguiWindow
     {
     public:
-        ImguiButtonOnOff(std::string& text) : m_text(text)
+        ImguiWindow(std::string title)
+            : m_title(title)
         {}
 
-        ImguiButtonOnOff(std::string& text, Getter<bool>& getter, Setter<bool>& setter)
-            : m_text(text)
-            , m_getter(getter)
-            , m_setter(setter)
-        {}
-        void update() override
+        void update()
         {
-
-            // concat text with value
-            m_text += " : ";
-            m_text += m_getter() ? "On" : "Off";
-            if (ImGui::Button(m_text.c_str()))
-                m_setter(!m_getter());
+            ImGui::Begin(m_title.c_str());
+            for (auto& input : m_inputs) {
+                input->update();
+            }
+            ImGui::End();
         }
 
-        void render() override
+        void render()
         {
             update();
         }
 
-        bool getValue() const override
+        void addInput(std::unique_ptr<IImGUIInput> input)
         {
-            return m_getter();
+            m_inputs.push_back(std::move(input));
         }
 
-        void setValue(const bool& value) override
-        {
-            m_setter(value);
-        }
-
-    protected:
-        std::string m_text;
-        Getter<bool> m_getter;
-        Setter<bool> m_setter;
+    private:
+        std::string m_title;
+        std::vector<std::unique_ptr<IImGUIInput>> m_inputs;
     };
 
 }

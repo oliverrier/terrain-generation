@@ -8,9 +8,6 @@ public:
     virtual ~IView() = default;
     virtual void update() = 0;
     virtual void render() = 0;
-
-private:
-    std::map<std::string, Observable> m_observables;
 };
 
 class IModel

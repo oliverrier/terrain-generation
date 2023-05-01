@@ -3,6 +3,7 @@
 #include <functional>
 #include <stdexcept>
 #include <variant>
+#include <algorithm>
 
 namespace utils
 {
@@ -23,6 +24,8 @@ namespace utils
     }
 }
 
+template<typename... Args>
+struct Signal;
 
 template<typename... Args>
 struct connection
