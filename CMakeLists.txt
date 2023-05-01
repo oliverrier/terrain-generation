@@ -1,4 +1,6 @@
 cmake_minimum_required(VERSION 3.25.2)
+set(CMAKE_TOOLCHAIN_FILE ${CMAKE_SOURCE_DIR}/vcpkg/scripts/buildsystems/vcpkg.cmake)
+
 project(terrain-generation)
 
 option(BUILD_SHARED_LIBS "Enable compilation of shared libraries" FALSE)
