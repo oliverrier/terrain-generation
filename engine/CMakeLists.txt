@@ -26,3 +26,13 @@ target_sources(engine PRIVATE
     "graphics/shaders/Shader.h"
     "graphics/shape/Cube.h"
 )
+
+target_sources(engin PUBLIC
+    # MVP
+    "MVP/Interfaces.h"
+    "MVP/Observable.h"
+    "MVP/Signal.h"
+
+    # ImGui
+    "ImGui/ImGUIManager.h"
+)
