@@ -96,15 +96,8 @@ public:
 		// 3. if binded to 0, OpenGL stops
 		glBindBuffer(GL_ARRAY_BUFFER, m_vbo);
 
-		Point3d<Type> P000 = { -1, -1, -1 }; Point3d<Type> P001 = { -1, -1, +1 }; Point3d<Type> P010 = { -1, +1, -1 }; Point3d<Type> P011 = { -1, +1, +1 };
-		Point3d<Type> P100 = { +1, -1, -1 }; Point3d<Type> P101 = { +1, -1, +1 }; Point3d<Type> P110 = { +1, +1, -1 }; Point3d<Type> P111 = { +1, +1, +1 };
-
-		Color<Type> vr = { 1, 0, 0, 1 }; Color<Type> vg = { 0, 1, 0, 1 }; Color<Type> vb = { 0, 0, 1, 1 };
-		Color<Type> ar = { 0, 1, 1, 1 }; Color<Type> ag = { 1, 0, 1, 1 }; Color<Type> ab = { 1, 1, 0, 1 };
-
-		Point3d<Type> nxn = { -1, 0, 0 }; Point3d<Type> nxp = { +1, 0, 0 };
-		Point3d<Type> nyn = { 0, -1, 0 }; Point3d<Type> nyp = { 0, +1, 0 };
-		Point3d<Type> nzn = { 0, 0, -1 }; Point3d<Type> nzp = { 0, 0, +1 };
+		Color<Type> Green = { 0, 1, 0, 1 };
+		Point3d<Type> YNormal = { 0, +1, 0 };
 
 		using VertexStructMapType = vertex_struct_map<Type>;
 		std::vector<vertex_struct_map<Type>> points;
@@ -113,7 +106,7 @@ public:
 
 		for (Point3d<float>& p : m_vertexVect)
 		{
-			points.push_back(VertexStructMapType{ p, nyp, vg });
+			points.push_back(VertexStructMapType{ p, YNormal, Green });
 		}
 
 		for (int i = 2; i < m_indices.size(); i += 3) {
