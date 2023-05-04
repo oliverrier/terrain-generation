@@ -1,5 +1,9 @@
 #pragma once
 
+#include <type_traits>
+#include <array>
+#include <cmath>
+
 template<typename T>
 struct Point2d
 {
@@ -33,6 +37,43 @@ struct Point3d
         , y(pt.y)
         , z(pt.z)
     {}
+
+    Point3d<T> operator+(const Point3d<T>& other) const
+    {
+        return Point3d<T>(x + other.x, y + other.y, z + other.z);
+    }
+
+
+    Point3d<T> operator*(const T& other) const
+    {
+        return Point3d<T>(x * other, y * other, z * other);
+    }
+
+    Point3d<T> operator/(const T& other) const
+    {
+        if (other != 0)
+        {
+            return Point3d<T>(x / other, y / other, z / other);
+        }
+        else
+        {
+            return Point3d<T>(0, 0, 0);
+        }
+    }
+
+    Point3d<T>& operator+=(const Point3d<T>& other)
+    {
+        x += other.x;
+        y += other.y;
+        z += other.z;
+        return *this;
+    }
+
+    Point3d<T> operator-(const Point3d<T>& other) const
+    {
+        return Point3d<T>(x - other.x, y - other.y, z - other.z);
+    }
+
 
     T x;
     T y;
@@ -114,7 +155,7 @@ private:
         result(a2, a1) = -std::sin(angle);
         result(a2, a2) = std::cos(angle);
         return result;
-    }
+    };
 
     std::array<Type, 16> m_data;
 };

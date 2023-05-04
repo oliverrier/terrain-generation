@@ -11,5 +11,6 @@ target_include_directories(utils PUBLIC
 )
 
 target_sources(utils PRIVATE
-  "Math.h"
-)
+  "link.cpp"
+  "math/Math.h"
+ "design_patterns/Factory.h" "design_patterns/TypeList.h" "math/Vector2.h")
