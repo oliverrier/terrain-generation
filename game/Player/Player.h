@@ -1,7 +1,8 @@
 #pragma once
 
 #include "engine/MVP/Interfaces.h"
-#include "engine/MVP/Observable.h"
+//#include "engine/MVP/Observable.h"
+#include <string>
 
 
 // struct DataModel
@@ -23,7 +24,7 @@
 //
 // };
 
-struct DataModel
+struct DataModel : public IModel
 {
     DataModel() : ageDuCapitaine(42), nomDuCapitaine(std::string("Jack Sparrow"))
     {

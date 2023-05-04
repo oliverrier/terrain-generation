@@ -19,6 +19,6 @@ target_include_directories(terrain-generation PUBLIC
 
 target_sources(terrain-generation PRIVATE
   main.cpp
-    "Player/Player.cpp"
-    "Player/Player.h"
+  #"Player/Player.cpp"
+  #"Player/Player.h"
 )
