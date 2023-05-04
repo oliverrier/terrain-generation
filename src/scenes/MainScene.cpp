@@ -35,40 +35,7 @@ void MainScene::processInput(sf::Event& inputEvent)
         _mainCamera._cameraYaw += 0.001f * dx;
         _mainCamera._cameraPitch -= 0.001f * dy;
     }
-
-    printf("Camera position: %f, %f\n", _mainCamera._cameraYaw, _mainCamera._cameraPitch);
-
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
-    {
-        _mainCamera._cameraPos.x -= sin(_mainCamera._cameraYaw) * _mainCamera._cameraSpeed;
-        _mainCamera._cameraPos.z -= cos(_mainCamera._cameraYaw) * _mainCamera._cameraSpeed;
-    }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
-    {
-        _mainCamera._cameraPos.x -= cos(_mainCamera._cameraYaw) * _mainCamera._cameraSpeed;
-        _mainCamera._cameraPos.z += sin(_mainCamera._cameraYaw) * _mainCamera._cameraSpeed;
-    }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
-    {
-        _mainCamera._cameraPos.x += sin(_mainCamera._cameraYaw) * _mainCamera._cameraSpeed;
-        _mainCamera._cameraPos.z += cos(_mainCamera._cameraYaw) * _mainCamera._cameraSpeed;
-
-    }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-    {
-        _mainCamera._cameraPos.x += cos(_mainCamera._cameraYaw) * _mainCamera._cameraSpeed;
-        _mainCamera._cameraPos.z -= sin(_mainCamera._cameraYaw) * _mainCamera._cameraSpeed;
-    }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::E))
-    {
-        _mainCamera._cameraPos.y += _mainCamera._cameraSpeed;
-    }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-    {
-        _mainCamera._cameraPos.y -= _mainCamera._cameraSpeed;
-    }
-
-
+    
     IScene::processInput(inputEvent);
 }
 
