@@ -16,4 +16,6 @@ include(build_configuration)
 add_library(project_options INTERFACE)
 target_compile_features(project_options INTERFACE cxx_std_20)
 
-add_subdirectory(game)
+add_subdirectory(src)
+add_subdirectory(engine)
+add_subdirectory(utils)

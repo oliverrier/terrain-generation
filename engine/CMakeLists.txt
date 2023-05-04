@@ -24,5 +24,12 @@ target_include_directories(engine PUBLIC
 target_sources(engine PRIVATE
     "graphics/shaders/Shader.cpp"
     "graphics/shaders/Shader.h"
-    "graphics/shape/Cube.h"
+    "graphics/shaders/map/map.frag"
+    "graphics/shaders/map/map.vert"
+    "graphics/shapes/Map.h"
+    "game/Game.h"
+    "game/Game.cpp"
+    "scene/Scene.h"
+    "scene/Scene.cpp"
+    "graphics/camera/Camera.h"
 )
